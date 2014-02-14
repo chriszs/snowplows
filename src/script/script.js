@@ -63,7 +63,7 @@
             if (d.plowDown === 'true') {
                 if (!(d.id in truckLookup)) {
                     truckLookup[d.id] = [];
-                    truckList.push(truckLookup[d.id]);
+                    truckList.unshift(truckLookup[d.id]);
                 }
 
                 truckLookup[d.id].push({
@@ -96,7 +96,7 @@
                     return d.y;
                 });
 
-        if (fileIndex % 10 === 0) {
+        if (fileIndex % 5 === 0) {
 
             var truckTrail = svg.selectAll('.truckTrail')
                                 .data(truckList,function (d) {
@@ -109,7 +109,7 @@
 
             truckTrail
                 .attr('d',function (d) {
-                    return line(d);
+                    return line(d.slice(0,100));
                 });
         }
     }
